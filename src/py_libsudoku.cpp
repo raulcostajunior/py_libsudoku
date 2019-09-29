@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
-#include <board.h>
+#include "board.h"
+#include "generator.h"
 
 namespace py = pybind11;
 
