@@ -11,9 +11,10 @@ To install in your current Python environment:
     cd [directory where py_libsudoku is]
     pip install .
 
-To run the demo script with examples on how to generate
-and solve puzzles:
+Demo scripts with examples on how to use the lib:
 
-    python demo.py
+    demo_board.py
+    demo_solver.py
+    demo_generator.py
 
 
