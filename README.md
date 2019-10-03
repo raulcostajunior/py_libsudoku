@@ -6,4 +6,14 @@ Python binding for libsudoku - a C++ lib for generating and solving Sudoku puzzl
 
     git clone --recurse-submodules git@github.com:raulcostajunior/py_libsudoku.git
 
+To install in your current Python environment:
+
+    cd [directory where py_libsudoku is]
+    pip install .
+
+To run the demo script with examples on how to generate
+and solve puzzles:
+
+    python demo.py
+
 
