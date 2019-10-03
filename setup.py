@@ -57,7 +57,7 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
 setup(
-    name='py_libsudoku',
+    name='py-libsudoku',
     version='0.6',
     author='Raul Costa Junior',
     author_email='raulcostajunior@gmail.com',
