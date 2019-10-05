@@ -8,6 +8,7 @@
 #include <vector>
 
 #include <pybind11/pybind11.h>
+#include <pybind11/functional.h>
 #include <pybind11/operators.h>
 #include <pybind11/stl.h>
 namespace py = pybind11;
@@ -84,6 +85,10 @@ PYBIND11_MODULE(py_libsudoku, m) {
              "Solves a Sudoku puzzle using the default candidates vector.")
         .def("solve", 
              (sudoku::SolverResult (sudoku::Solver::*)(const sudoku::Board &, const std::vector<uint8_t> &, sudoku::Board &)) &sudoku::Solver::solve,
-             "Solves a Sudoku puzzle using the given candidates vector.");
+             "Solves a Sudoku puzzle using the given candidates vector.")
+        .def("asyncSolveForGood", &sudoku::Solver::asyncSolveForGood,
+             "Assynchronously finds all solutions for a given board")
+        .def("cancelAsyncSolving", &sudoku::Solver::cancelAsyncSolving,
+             "Cancels any ongoing asyncSolveForGood processing.");
 }
 

@@ -58,7 +58,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='py-libsudoku',
-    version='0.7',
+    version='0.8',
     author='Raul Costa Junior',
     author_email='raulcostajunior@gmail.com',
     description='Python bindings for libsudoku',
