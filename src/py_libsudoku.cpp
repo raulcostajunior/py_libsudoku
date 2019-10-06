@@ -63,9 +63,6 @@ PYBIND11_MODULE(py_libsudoku, m) {
                  return ostr.str();
                 });
 
-    py::class_<sudoku::Generator>(m, "Generator")
-        .def(py::init());
-
 
     py::enum_<sudoku::SolverResult>(m, "SolverResult")
         .value("NO_ERROR", sudoku::SolverResult::NO_ERROR)
@@ -78,17 +75,55 @@ PYBIND11_MODULE(py_libsudoku, m) {
         .value("ASYNC_SOLVING_SUBMITTED", sudoku::SolverResult::ASYNC_SOLVING_SUBMITTED)
         .value("ASYNC_SOLVING_BUSY", sudoku::SolverResult::ASYNC_SOLVING_BUSY);
 
+
     py::class_<sudoku::Solver>(m, "Solver")
+
         .def(py::init())
+
         .def("solve", 
              (sudoku::SolverResult (sudoku::Solver::*)(const sudoku::Board &, sudoku::Board &)) &sudoku::Solver::solve,
              "Solves a Sudoku puzzle using the default candidates vector.")
+
         .def("solve", 
              (sudoku::SolverResult (sudoku::Solver::*)(const sudoku::Board &, const std::vector<uint8_t> &, sudoku::Board &)) &sudoku::Solver::solve,
              "Solves a Sudoku puzzle using the given candidates vector.")
+
         .def("asyncSolveForGood", &sudoku::Solver::asyncSolveForGood,
              "Assynchronously finds all solutions for a given board")
+
         .def("cancelAsyncSolving", &sudoku::Solver::cancelAsyncSolving,
              "Cancels any ongoing asyncSolveForGood processing.");
+
+     
+     py::enum_<sudoku::GeneratorResult>(m, "GeneratorResult")
+        .value("NO_ERROR", sudoku::GeneratorResult::NO_ERROR)
+        .value("ASYNC_GEN_CANCELLED", sudoku::GeneratorResult::ASYNC_GEN_CANCELLED)
+        .value("ASYNC_GEN_SUBMITTED", sudoku::GeneratorResult::ASYNC_GEN_SUBMITTED) 
+        .value("ASYNC_GEN_BUSY", sudoku::GeneratorResult::ASYNC_GEN_BUSY);
+
+
+     py::enum_<sudoku::PuzzleDifficulty>(m, "PuzzleDifficulty")
+        .value("EASY", sudoku::PuzzleDifficulty::EASY)
+        .value("MEDIUM", sudoku::PuzzleDifficulty::MEDIUM)
+        .value("HARD", sudoku::PuzzleDifficulty::HARD);
+
+
+     py::class_<sudoku::Generator>(m, "Generator")
+
+        .def(py::init())
+
+        .def("asyncGenerate", &sudoku::Generator::asyncGenerate,
+             "Assynchronously generates a board with a given difficulty level.")
+
+        .def("cancelAsyncGenerate", &sudoku::Generator::cancelAsyncGenerate,
+             "Cancels any ongoing asyncGenerate processing.")
+
+        .def("maxEmptyPositions", &sudoku::Generator::maxEmptyPositions,
+             "The maximum number of empty positions allowed in a generated puzzle with a given difficulty.")
+
+        .def("minEmptyPositions", &sudoku::Generator::minEmptyPositions,
+             "The minimum number of empty positions allowed in a generated puzzle with a given difficulty.");
+
+
 }
 
