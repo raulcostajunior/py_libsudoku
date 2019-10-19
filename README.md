@@ -1,7 +1,7 @@
 # py_libsudoku
 Python binding for libsudoku - a C++ lib for generating and solving Sudoku puzzles.
 
-# Installing as a Python Extension
+## Installing as a Python Extension
 
 Can be installed from directly from [**PyPi**](https://pypi.org/project/py-libsudoku) with:
 
@@ -9,7 +9,7 @@ Can be installed from directly from [**PyPi**](https://pypi.org/project/py-libsu
     
 Installation requires a C++ 11 compliant compiler and CMake version 3.5 or above.
 
-# Cloning the Repository
+## Cloning the Repository
 
 **py_libsudoku** references [**pybind11**](https://github.com/pybind/pybind11) and [**libsudoku**](https://github.com/raulcostajunior/libsudoku) as submodules. To clone **py_sudoku**, use:
 
