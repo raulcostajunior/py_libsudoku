@@ -6,7 +6,7 @@ genBoard = lsdk.Board()
 
 def onGenProgress(currentStep, totalSteps):
     print("    .... asyncGenerate at step {} of {}"
-          .format(currentStep, totalSteps))
+        .format(currentStep, totalSteps))
 
 def onGenFinished(result, board):
     global genBoard
@@ -20,8 +20,9 @@ gen = lsdk.Generator()
 
 print("Will generate board with Hard difficulty ...")
 
-gen.asyncGenerate(lsdk.PuzzleDifficulty.HARD,
-                  onGenProgress, onGenFinished)
+gen.asyncGenerate(
+    lsdk.PuzzleDifficulty.HARD,
+    onGenProgress, onGenFinished)
 
 while not asyncGenComplete:
     time.sleep(0.1)
@@ -37,4 +38,4 @@ solution_board = lsdk.Board()
 solvResult = solver.solve(genBoard, solution_board)
 print(".... solver result: {}".format(solvResult))
 if solvResult == lsdk.SolverResult.NO_ERROR:
-      print("Solution found: {}".format(solution_board))
+    print("Solution found: {}".format(solution_board))
