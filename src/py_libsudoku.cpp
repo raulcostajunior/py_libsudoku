@@ -65,6 +65,7 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
         .def("__str__",
              [](const sudoku::Board &board) {
+                  // Reference for border characters: https://en.wikipedia.org/wiki/Box-drawing_character.
                   std::ostringstream ostr;
                   ostr << std::endl;
                   ostr << "\u2554\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2557";
