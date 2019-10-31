@@ -61,7 +61,46 @@ PYBIND11_MODULE(py_libsudoku, m) {
                  ostr << board;
                  ostr << ">\n";
                  return ostr.str();
-                });
+                })
+
+        .def("__str__",
+             [](const sudoku::Board &board) {
+                  std::ostringstream ostr;
+                  ostr << std::endl;
+                  ostr << "\u2554\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2557";
+                  ostr << std::endl;
+                  for (int vGroup = 0; vGroup < 3; vGroup++) {
+                    for (int lin=0; lin < 3; lin++) {
+                      ostr << "\u2551" << (int)board.valueAt(lin+3*vGroup, 0) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 1) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 2) << "\u2502";
+                      ostr << (int)board.valueAt(lin+3*vGroup, 3) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 4) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 5) << "\u2502";
+                      ostr << (int)board.valueAt(lin+3*vGroup, 6) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 7) << " "
+                           << (int)board.valueAt(lin+3*vGroup, 8) << "\u2551";
+                      ostr << std::endl;
+                    }
+                    if (vGroup < 2) {
+                      ostr << "\u255f\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2562";
+                      ostr << std::endl;
+                    }
+                  }
+                  ostr << "\u255a\u2550\u2550\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2550\u2550\u255d";
+                  ostr << std::endl;
+
+                  return ostr.str();
+             })
+
+        .def("__len__", [](const sudoku::Board &b) {
+             return 81;
+            })
+
+        .def("__getitem__", [](const sudoku::Board &b, size_t i) {
+            if (i >= 81) throw py::index_error();
+               return b.valueAt(i / 9, i % 9);
+            });
 
 
     py::enum_<sudoku::SolverResult>(m, "SolverResult")
