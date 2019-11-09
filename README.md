@@ -13,7 +13,7 @@ Installation requires a C++ 11 compliant compiler and CMake version 3.5 or above
 
 **py_libsudoku** references [**pybind11**](https://github.com/pybind/pybind11) and [**libsudoku**](https://github.com/raulcostajunior/libsudoku) as submodules. To clone **py_sudoku**, use:
 
-    git clone --recurse-submodules git@github.com:raulcostajunior/py_libsudoku.git
+    git clone --recurse-submodules https://github.com/raulcostajunior/py_libsudoku.git
 
 Then install in your current Python environment - requires a C++ 11 compliant compiler and CMake version 3.5 or above:
 
