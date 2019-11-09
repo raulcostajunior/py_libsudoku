@@ -65,30 +65,29 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
         .def("__str__",
              [](const sudoku::Board &board) {
-                  // Reference for border characters: https://en.wikipedia.org/wiki/Box-drawing_character.
                   std::ostringstream ostr;
                   ostr << std::endl;
-                  ostr << "\u2554\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2550\u2550\u2557";
+                  ostr << "------+-----+------";
                   ostr << std::endl;
                   for (int vGroup = 0; vGroup < 3; vGroup++) {
                     for (int lin=0; lin < 3; lin++) {
-                      ostr << "\u2551" << (int)board.valueAt(lin+3*vGroup, 0) << " "
+                      ostr << "|" << (int)board.valueAt(lin+3*vGroup, 0) << " "
                            << (int)board.valueAt(lin+3*vGroup, 1) << " "
-                           << (int)board.valueAt(lin+3*vGroup, 2) << "\u2502";
+                           << (int)board.valueAt(lin+3*vGroup, 2) << "|";
                       ostr << (int)board.valueAt(lin+3*vGroup, 3) << " "
                            << (int)board.valueAt(lin+3*vGroup, 4) << " "
-                           << (int)board.valueAt(lin+3*vGroup, 5) << "\u2502";
+                           << (int)board.valueAt(lin+3*vGroup, 5) << "|";
                       ostr << (int)board.valueAt(lin+3*vGroup, 6) << " "
                            << (int)board.valueAt(lin+3*vGroup, 7) << " "
-                           << (int)board.valueAt(lin+3*vGroup, 8) << "\u2551";
+                           << (int)board.valueAt(lin+3*vGroup, 8) << "|";
                       ostr << std::endl;
                     }
                     if (vGroup < 2) {
-                      ostr << "\u255f\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2562";
+                      ostr << "------+-----+------";
                       ostr << std::endl;
                     }
                   }
-                  ostr << "\u255a\u2550\u2550\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2550\u2550\u255d";
+                  ostr << "------+-----+------";
                   ostr << std::endl;
 
                   return ostr.str();
