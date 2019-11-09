@@ -17,9 +17,9 @@ PYBIND11_MODULE(py_libsudoku, m) {
     m.doc() = "Python bindings for libsudoku";
 
     py::enum_<sudoku::SetValueResult>(m, "SetValueResult")
-        .value("NO_ERROR", sudoku::SetValueResult::NO_ERROR)
-        .value("INVALID_VALUE", sudoku::SetValueResult::INVALID_VALUE)
-        .value("VALUE_INVALIDATES_BOARD", sudoku::SetValueResult::VALUE_INVALIDATES_BOARD);
+        .value("NO_ERROR", sudoku::SetValueResult::NoError)
+        .value("INVALID_VALUE", sudoku::SetValueResult::InvalidValue)
+        .value("VALUE_INVALIDATES_BOARD", sudoku::SetValueResult::ValueInvalidatesBoard);
 
     py::class_<sudoku::Board>(m, "Board")
 
@@ -105,15 +105,15 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
 
     py::enum_<sudoku::SolverResult>(m, "SolverResult")
-        .value("NO_ERROR", sudoku::SolverResult::NO_ERROR)
-        .value("INVALID_BOARD", sudoku::SolverResult::INVALID_BOARD)
-        .value("EMPTY_BOARD", sudoku::SolverResult::EMPTY_BOARD)
-        .value("ALREADY_SOLVED", sudoku::SolverResult::ALREADY_SOLVED)
-        .value("HAS_NO_SOLUTION", sudoku::SolverResult::HAS_NO_SOLUTION)
-        .value("INVALID_CANDIDATES_VECTOR", sudoku::SolverResult::INVALID_CANDIDATES_VECTOR)
-        .value("ASYNC_SOLVED_CANCELLED", sudoku::SolverResult::ASYNC_SOLVING_CANCELLED)
-        .value("ASYNC_SOLVING_SUBMITTED", sudoku::SolverResult::ASYNC_SOLVING_SUBMITTED)
-        .value("ASYNC_SOLVING_BUSY", sudoku::SolverResult::ASYNC_SOLVING_BUSY);
+        .value("NO_ERROR", sudoku::SolverResult::NoError)
+        .value("INVALID_BOARD", sudoku::SolverResult::InvalidBoard)
+        .value("EMPTY_BOARD", sudoku::SolverResult::EmptyBoard)
+        .value("ALREADY_SOLVED", sudoku::SolverResult::AlreadySolved)
+        .value("HAS_NO_SOLUTION", sudoku::SolverResult::HasNoSolution)
+        .value("INVALID_CANDIDATES_VECTOR", sudoku::SolverResult::InvalidatesCandidatesVector)
+        .value("ASYNC_SOLVED_CANCELLED", sudoku::SolverResult::AsyncSolvingCancelled)
+        .value("ASYNC_SOLVING_SUBMITTED", sudoku::SolverResult::AsyncSolvingSubmitted)
+        .value("ASYNC_SOLVING_BUSY", sudoku::SolverResult::AsyncSolvingBusy);
 
 
     py::class_<sudoku::Solver>(m, "Solver")
@@ -136,16 +136,16 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
      
      py::enum_<sudoku::GeneratorResult>(m, "GeneratorResult")
-        .value("NO_ERROR", sudoku::GeneratorResult::NO_ERROR)
-        .value("ASYNC_GEN_CANCELLED", sudoku::GeneratorResult::ASYNC_GEN_CANCELLED)
-        .value("ASYNC_GEN_SUBMITTED", sudoku::GeneratorResult::ASYNC_GEN_SUBMITTED) 
-        .value("ASYNC_GEN_BUSY", sudoku::GeneratorResult::ASYNC_GEN_BUSY);
+        .value("NO_ERROR", sudoku::GeneratorResult::NoError)
+        .value("ASYNC_GEN_CANCELLED", sudoku::GeneratorResult::AsyncGenCancelled)
+        .value("ASYNC_GEN_SUBMITTED", sudoku::GeneratorResult::AsyncGenSubmitted) 
+        .value("ASYNC_GEN_BUSY", sudoku::GeneratorResult::AsyncGenBusy);
 
 
      py::enum_<sudoku::PuzzleDifficulty>(m, "PuzzleDifficulty")
-        .value("EASY", sudoku::PuzzleDifficulty::EASY)
-        .value("MEDIUM", sudoku::PuzzleDifficulty::MEDIUM)
-        .value("HARD", sudoku::PuzzleDifficulty::HARD);
+        .value("EASY", sudoku::PuzzleDifficulty::Easy)
+        .value("MEDIUM", sudoku::PuzzleDifficulty::Medium)
+        .value("HARD", sudoku::PuzzleDifficulty::Hard);
 
 
      py::class_<sudoku::Generator>(m, "Generator")
