@@ -46,6 +46,26 @@ print("Value at one_to_nine_cpy(1,0) = {}"
 print()
 print()
 
+invalid_board = py_libsudoku.Board([1, 2, 3, 4, 5, 6, 7, 8, 1,
+                                    2, 8, 7, 9, 3, 1, 4, 6, 5])
+invalid_positions = invalid_board.getInvalidPositions()
+print("invalid_board = {}".format(invalid_board))
+print("invalid positions ({}):".format(len(invalid_positions)))
+for i in range(len(invalid_positions)):
+      print(
+            "{} at ({}, {})"
+            .format(
+                  invalid_board.valueAt(
+                        invalid_positions[i][0], invalid_positions[i][1]
+                  ),
+                  invalid_positions[i][0],
+                  invalid_positions[i][1]
+            )
+      )
+
+print()
+print()
+
 one_to_nine_cpy.clear()
 print("one_to_nine_cpy after clear: {}"
       .format(one_to_nine_cpy))

@@ -49,6 +49,10 @@ PYBIND11_MODULE(py_libsudoku, m) {
              "Sets the value at a given board position - (line, column) pair.",
              py::arg("line"), py::arg("column"), py::arg("value"))
 
+        .def("getInvalidPositions", &sudoku::Board::getInvalidPositions,
+             "Returns the board positions that contain invalid value - " \
+             "either for being out of range or for violating the non repetion rules.")
+
         .def("clear", &sudoku::Board::clear,
              "Clears the board by assigning 0 to all its positions.")
 
