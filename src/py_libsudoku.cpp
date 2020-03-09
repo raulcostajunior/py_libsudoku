@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <iostream>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 #include <pybind11/pybind11.h>
@@ -25,7 +26,7 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
         .def(py::init(), "Creates an empty board.")
 
-        .def(py::init<const std::vector<std::uint8_t> &>(), 
+        .def(py::init<const std::initializer_list<std::uint8_t> &>(),
              "Creates a board with the given values (up to 81 values between 0 and 9).")
 
         .def(py::init<const sudoku::Board &>(),
@@ -45,7 +46,7 @@ PYBIND11_MODULE(py_libsudoku, m) {
              "The value at a given board position - (line, column) pair.",
              py::arg("line"), py::arg("column"))
 
-        .def("setValueAt", &sudoku::Board::setValueAt, 
+        .def("setValueAt", &sudoku::Board::setValueAt,
              "Sets the value at a given board position - (line, column) pair.",
              py::arg("line"), py::arg("column"), py::arg("value"))
 
@@ -123,11 +124,11 @@ PYBIND11_MODULE(py_libsudoku, m) {
 
         .def(py::init())
 
-        .def("solve", 
+        .def("solve",
              (sudoku::SolverResult (sudoku::Solver::*)(const sudoku::Board &, sudoku::Board &)) &sudoku::Solver::solve,
              "Solves a Sudoku puzzle using the default candidates vector.")
 
-        .def("solve", 
+        .def("solve",
              (sudoku::SolverResult (sudoku::Solver::*)(const sudoku::Board &, const std::vector<uint8_t> &, sudoku::Board &)) &sudoku::Solver::solve,
              "Solves a Sudoku puzzle using the given candidates vector.")
 
@@ -137,11 +138,11 @@ PYBIND11_MODULE(py_libsudoku, m) {
         .def("cancelAsyncSolving", &sudoku::Solver::cancelAsyncSolving,
              "Cancels any ongoing asyncSolveForGood processing.");
 
-     
+
      py::enum_<sudoku::GeneratorResult>(m, "GeneratorResult")
         .value("NO_ERROR", sudoku::GeneratorResult::NoError)
         .value("ASYNC_GEN_CANCELLED", sudoku::GeneratorResult::AsyncGenCancelled)
-        .value("ASYNC_GEN_SUBMITTED", sudoku::GeneratorResult::AsyncGenSubmitted) 
+        .value("ASYNC_GEN_SUBMITTED", sudoku::GeneratorResult::AsyncGenSubmitted)
         .value("ASYNC_GEN_BUSY", sudoku::GeneratorResult::AsyncGenBusy);
 
 
