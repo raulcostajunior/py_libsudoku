@@ -105,3 +105,6 @@ venv.bak/
 
 # vscode machine specific settings
 .vscode/
+
+# clangd specific
+.clangd/
