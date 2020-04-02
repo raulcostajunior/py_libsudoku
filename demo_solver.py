@@ -3,9 +3,11 @@ import time
 
 asyncSolveComplete = False
 
+
 def onSolverProgress(progressPercentage, numSolutions):
     print(".... asyncSolveForGood at {:05.2f}%: {} solution(s) so far"
           .format(progressPercentage, numSolutions))
+
 
 def onSolverFinished(result, solvedBoards):
     global asyncSolveComplete
@@ -16,6 +18,7 @@ def onSolverFinished(result, solvedBoards):
     for b in solvedBoards:
         print()
         print("{}".format(b))
+
 
 solvable_one_solution = lsk.Board(
     [0, 0, 6, 0, 0, 8, 5, 0, 0,
@@ -53,7 +56,8 @@ print("...")
 
 solver.asyncSolveForGood(solvable_one_solution,
                          onSolverProgress,
-                         onSolverFinished)
+                         onSolverFinished,
+                         50)  # 50 is the max. number of solutions to return.
 
 while not asyncSolveComplete:
     time.sleep(0.1)
