@@ -51,7 +51,7 @@ else:
 
 print()
 print("Doing an exhaustive search for all solutions ...")
-print("   (there's just 1, but it will take long to find that out.)")
+print("   (there's just 1, as this is a compliant Sudoku Puzzle.)")
 print("...")
 
 solver.asyncSolveForGood(solvable_one_solution,
