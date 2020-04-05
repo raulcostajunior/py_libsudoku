@@ -4,9 +4,10 @@ import time
 asyncSolveComplete = False
 
 
-def onSolverProgress(progressPercentage, numSolutions):
-    print(".... asyncSolveForGood at {:05.2f}%: {} solution(s) so far"
-          .format(progressPercentage, numSolutions))
+def onSolverProgress(progressPercentage, unsolvables, numSolutions):
+    print(".... asyncSolveForGood at {:05.2f}%: {} solution(s) and {} "
+          "unsolvable(s) so far"
+          .format(progressPercentage, numSolutions, unsolvables))
 
 
 def onSolverFinished(result, solvedBoards):
