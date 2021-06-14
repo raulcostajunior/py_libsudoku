@@ -123,3 +123,6 @@ CTestTestfile.cmake
 build/
 build_debug/
 build_release/
+
+# ctidy configuration file
+checks.json
