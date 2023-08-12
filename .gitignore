@@ -103,8 +103,11 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# vscode machine specific settings
+# vscode settings
 .vscode/
+
+# Jetbrains family of IDEs (clion / pycharm specifically)
+.idea/
 
 # clangd specific
 .clangd/
