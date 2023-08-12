@@ -126,6 +126,7 @@ CTestTestfile.cmake
 build/
 build_debug/
 build_release/
+cmake-build*/
 
 # ctidy configuration file
 checks.json
