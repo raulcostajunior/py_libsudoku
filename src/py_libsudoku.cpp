@@ -141,8 +141,8 @@ PYBIND11_MODULE(py_libsudoku, m)
               (sudoku::SolverResult(sudoku::Solver::*)(const sudoku::Board &, sudoku::Board &)) & sudoku::Solver::solve,
               "Solves a Sudoku puzzle using the default candidates vector.")
 
-         .def("solve",
-              (sudoku::SolverResult(sudoku::Solver::*)(const sudoku::Board &, const std::vector<uint8_t> &, sudoku::Board &)) & sudoku::Solver::solve,
+         .def_static("solve",
+              (sudoku::SolverResult(*)(const sudoku::Board &, const std::vector<uint8_t> &, sudoku::Board &)) & sudoku::Solver::solveWithCandidates,
               "Solves a Sudoku puzzle using the given candidates vector.")
 
          .def("asyncSolveForGood", &sudoku::Solver::asyncSolveForGood,
